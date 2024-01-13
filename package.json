@@ -1,6 +1,6 @@
 {
   "name": "navigation-nuxt",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "An open source personal navigation practice platform built on the Nuxt 3 framework",
   "private": true,
   "type": "module",
@@ -12,6 +12,8 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
+    "@antfu/eslint-config": "^2.6.2",
+    "eslint": "^8.56.0",
     "nuxt": "^3.9.1",
     "vue": "^3.4.10",
     "vue-router": "^4.2.5"
