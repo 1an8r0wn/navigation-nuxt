@@ -10,7 +10,7 @@ RUN npm config set registry https://registry.npmmirror.com && \
 
 COPY . .
 
-RUN pnpm run build
+RUN pnpm dlx prisma generate && pnpm run build
 
 FROM node:20-alpine3.19
 
