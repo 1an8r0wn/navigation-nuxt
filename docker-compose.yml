@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  nuxt-app:
+    image: navigation-nuxt
+    container_name: navigation-nuxt
+    restart: always
+    network_mode: individual
+    ports:
+      - "3020:3000"
+    build:
+      context: .
+      dockerfile: Dockerfile
