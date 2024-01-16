@@ -8,4 +8,9 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/ui',
   ],
+  runtimeConfig: {
+    public: {
+      socketPort: 3001,
+    },
+  },
 })

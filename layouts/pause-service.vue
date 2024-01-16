@@ -7,7 +7,7 @@ interface TextColorChange {
 }
 
 const textColorChange: TextColorChange = reactive({
-  pause_text: ' PAUSE SERVICE 暂停服务 ',
+  pause_text: 'PAUSE SERVICE 暂停服务',
   colors: ['text-red-500', 'text-white'],
   currentColorIndex: 0,
   textChangeInterval: null,
@@ -36,11 +36,11 @@ onUnmounted(() => {
 <template>
   <main class="h-svh flex items-center justify-center bg-red-500 select-none">
     <div
-      class="w-full flex items-center justify-center flex-nowrap flex-col md:flex-row bg-yellow-300 text-nowrap overflow-hidden py-4 text-4xl"
+      class="w-full flex items-center md:items-start justify-center flex-nowrap flex-col md:flex-row bg-yellow-300 text-nowrap overflow-hidden py-4 text-4xl"
       :class="pauseTextClass"
     >
-      <UIcon class="md:mr-4" name="i-heroicons-shield-exclamation" />
-      <div class="font-bold font-mono text-center">
+      <UIcon class="md:mr-2" name="i-heroicons-shield-exclamation" />
+      <div class="font-bold text-center">
         {{ textColorChange.pause_text }}
       </div>
     </div>
