@@ -4,7 +4,7 @@ const appConfig = useAppConfig()
 
 <template>
   <header
-    class="h-full px-4 md:px-9 select-none"
+    class="h-full px-4 sm:px-9 select-none"
   >
     <div class="flex items-center justify-between">
       <img class="h-9" src="assets/image/booop_navigation_logo_w500_h150_black.png" alt="booop navigation logo">

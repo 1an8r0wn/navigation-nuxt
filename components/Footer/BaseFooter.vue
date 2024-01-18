@@ -27,12 +27,12 @@ const colorModeList = [{
 
 <template>
   <footer
-    class="flex flex-col h-full p-4 md:p-9 border-t-2 border-zinc-100 bg-zinc-50 dark:border-zinc-900 dark:bg-zinc-950 select-none"
+    class="flex flex-col h-full p-4 sm:p-9 border-t-2 border-zinc-100 bg-zinc-50 dark:border-zinc-900 dark:bg-zinc-950 select-none"
   >
-    <div class="flex">
+    <div class="flex items-baseline sm:items-center justify-between flex-col sm:flex-row">
       <USelect v-model="$colorMode.preference" :options="colorModeList" />
     </div>
-    <div class="flex flex-col pt-4 text-xs text-zinc-300 dark:text-zinc-600">
+    <div class="flex flex-col mt-4 text-xs text-zinc-300 dark:text-zinc-600">
       <div>VERSION: {{ version }}</div>
       <div>Copyright © {{ nowYear }} booop All rights reserved.</div>
     </div>

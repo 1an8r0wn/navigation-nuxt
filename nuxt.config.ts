@@ -13,4 +13,12 @@ export default defineNuxtConfig({
       socketPort: 3001,
     },
   },
+  app: {
+    head: {
+      htmlAttrs: {
+        lang: 'zh-cn',
+      },
+      charset: 'utf-8',
+    },
+  },
 })
