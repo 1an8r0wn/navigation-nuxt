@@ -1,6 +1,6 @@
 {
   "name": "navigation-nuxt",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "An open source personal navigation practice platform built on the Nuxt 3 framework",
   "private": true,
   "type": "module",
@@ -22,6 +22,7 @@
   "dependencies": {
     "@iconify-json/mdi": "^1.1.64",
     "@nuxt/ui": "^2.12.0",
+    "@pinia/nuxt": "^0.5.1",
     "@prisma/client": "5.8.0",
     "sass": "^1.69.7",
     "socket.io": "^4.7.4"
