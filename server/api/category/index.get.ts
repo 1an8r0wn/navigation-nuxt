@@ -5,8 +5,8 @@ const prisma = new PrismaClient()
 export default defineEventHandler(async () => {
   return prisma.category.findMany({
     where: {
-      visibility: true,
-      delete_flag: false,
+      is_visibility: true,
+      is_delete: false,
     },
   })
 })
