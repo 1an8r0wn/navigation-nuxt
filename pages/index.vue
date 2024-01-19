@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <main class="h-full my-9 px-4 sm:px-9 select-none">
+  <main class="pl-4 w-4/5">
     <p class="font-bold text-4xl underline">
       This is homepage
     </p>
