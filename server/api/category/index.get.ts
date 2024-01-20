@@ -9,7 +9,15 @@ export default defineEventHandler(async () => {
       is_delete: false,
     },
     orderBy: {
-      sort: 'desc',
+      sort: 'asc',
+    },
+    include: {
+      site: {
+        where: {
+          is_visibility: true,
+          is_delete: false,
+        },
+      },
     },
   })
 })
