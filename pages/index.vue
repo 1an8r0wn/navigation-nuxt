@@ -17,17 +17,40 @@ async function jumpUrlHandler(site: Site) {
   window.open(site.url, '_self') // 在当前窗口打开网站
   site.visits_count += 1
 }
+
+/**
+ * 侦听 pinia 中 state 的 categoryClickScrollToIndex 值
+ * 将新 index 值传递给 categoryIndexSelectHandler()
+ */
+watch(() => store.categoryClickScrollToIndex, (index: number) => {
+  categoryIndexSelectHandler(index)
+})
+
+/**
+ * 类目索引选择处理
+ * 通过侦听器获取的新索引值跳转到对应的标题处
+ * @param index
+ */
+function categoryIndexSelectHandler(index: number) {
+  const contentItem = document.getElementById(`category_${index}`)
+  window.scrollTo({
+    top: contentItem?.offsetTop,
+    left: 0,
+    behavior: 'smooth', // smooth：平滑；auto：瞬间
+  })
+}
 </script>
 
 <template>
   <main class="w-full sm:pl-4">
-    <div v-for="category in store.navigationList" :key="category.id" class="mb-4 tracking-wide">
+    <div v-for="category in store.navigationList" :id="`category_${category.id}`" :key="category.id" class="mb-4 tracking-wide">
       <div class="flex flex-col mb-2 text-center sm:text-justify">
-        {{ category.description }}
         <div class="text-xl font-bold text-zinc-900 dark:text-zinc-400">
           {{ category.name }}
         </div>
-        <div class="text-base text-zinc-600" />
+        <div class="text-base text-zinc-600">
+          {{ category.description }}
+        </div>
       </div>
       <div class="w-full grid gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6">
         <template v-for="site in category.site" :key="site.id">
