@@ -15,17 +15,19 @@ function getCategoryClickIndex(index: number) {
 </script>
 
 <template>
-  <nav class="pr-0 sm:pr-4 mb-4 sm:mb-0 flex flex-row sm:flex-col overflow-x-auto">
+  <nav class="sticky z-50 top-0 pr-0 sm:pr-4 mb-4 sm:mb-0 flex flex-row sm:flex-col overflow-x-auto">
     <div
       v-for="category in store.navigationList" :id="`category_nav_${category.id}`" :key="category.id"
       class="flex flex-row sm:flex-col flex-nowrap" @click="getCategoryClickIndex(category.id)"
     >
       <!-- 横向菜单栏，屏幕尺寸小于 xs 时显示 -->
-      <span
-        class="visible sm:hidden w-max mx-4 p-2 text-zinc-400 hover:text-zinc-800 hover:font-bold dark:text-zinc-600 dark:hover:text-zinc-300 bg-transparent hover:bg-zinc-100 dark:hover:bg-zinc-900 rounded-full cursor-pointer"
-      >
-        {{ category.name }}
-      </span>
+      <div class="h-12 sm:h-auto flex items-center flex-nowrap bg-white dark:bg-[#121212]">
+        <span
+          class="visible sm:hidden w-max mx-4 py-2 px-4 text-zinc-400 hover:text-zinc-800 hover:font-bold dark:text-zinc-600 dark:hover:text-zinc-300 bg-transparent hover:bg-zinc-100 dark:hover:bg-zinc-900 rounded-full cursor-pointer"
+        >
+          {{ category.name }}
+        </span>
+      </div>
       <!-- 竖向菜单栏，屏幕尺寸大于 xs 时显示 -->
       <div
         class="hidden sm:inline p-4 pl-8 my-2 text-zinc-400 hover:text-zinc-800 hover:font-bold dark:text-zinc-600 dark:hover:text-zinc-300 bg-transparent hover:bg-zinc-100 dark:hover:bg-zinc-900 rounded-full cursor-pointer"

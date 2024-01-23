@@ -47,7 +47,7 @@ function categoryIndexSelectHandler(index: number) {
       v-for="category in store.navigationList" :id="`category_${category.id}`" :key="category.id"
       class="mb-4 tracking-wide"
     >
-      <div class="flex flex-col mb-2 text-center sm:text-justify">
+      <div class="flex flex-col mb-2 text-center sm:text-justify custom-sm-scroll-to-style-fix">
         <div class="text-xl font-bold text-zinc-900 dark:text-zinc-400">
           {{ category.name }}
         </div>
@@ -81,6 +81,15 @@ function categoryIndexSelectHandler(index: number) {
 </template>
 
 <style scoped lang="scss">
+// 宽度小于 640px 时（sm:）在每个类目区上方添加 60px 的外边框
+@media not all and (min-width: 640px) {
+  .custom-sm-scroll-to-style-fix::before {
+    content: '';
+    width: 100%;
+    margin-top: 60px;
+  }
+}
+
 .custom-line-clamp {
   display: -webkit-box;
   -webkit-box-orient: vertical;
