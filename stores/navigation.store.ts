@@ -3,6 +3,8 @@ export const useNavigationStore = defineStore('navigation', {
     navigationList: {},
     // 点击选择的类目索引值
     categoryClickScrollToIndex: -1,
+    // 通过滚动事件侦听当前页面所处类目索引值
+    activeCategoryScrollToIndex: 0,
   }),
   actions: {
     /**
@@ -20,6 +22,14 @@ export const useNavigationStore = defineStore('navigation', {
      */
     updateCategoryClickIndexHandler(index: number) {
       this.categoryClickScrollToIndex = index
+    },
+
+    /**
+     * 更新通过 window 事件侦听当前页面滚动所处类目的索引值
+     * @param index
+     */
+    updateActiveCategoryIndexHandler(index: number) {
+      this.activeCategoryScrollToIndex = index
     },
   },
 })

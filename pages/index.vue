@@ -39,13 +39,41 @@ function categoryIndexSelectHandler(index: number) {
     behavior: 'smooth', // smooth：平滑；auto：瞬间
   })
 }
+
+const activeIndex = ref(1)
+const content = ref()
+
+function handleScroll() {
+  /**
+   * TODO 【目前存在问题】获取页面 scroll 与类目高度相减的绝对值的下标和哪个菜单栏 index 最近就高亮哪个菜单项
+   */
+  const scroll = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop
+  const arr = Array(store.navigationList.length)
+    .fill(1)
+    .map((item, index) => {
+      const contentItem = document.getElementById(`category_${index + 1}`)
+      return Math.abs(scroll - contentItem?.offsetTop + 235)
+    })
+  activeIndex.value = arr.indexOf(Math.min(...arr))
+  store.updateActiveCategoryIndexHandler(Number(activeIndex.value))
+}
+
+onMounted(() => {
+  nextTick(() => {
+    window.addEventListener('scroll', handleScroll)
+  })
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('scroll', handleScroll)
+})
 </script>
 
 <template>
   <main class="w-full sm:pl-4">
     <div
       v-for="category in store.navigationList" :id="`category_${category.id}`" :key="category.id"
-      class="mb-4 tracking-wide"
+      ref="content" class="mb-4 tracking-wide"
     >
       <div class="flex flex-col mb-2 text-center sm:text-justify custom-sm-scroll-to-style-fix">
         <div class="text-xl font-bold text-zinc-900 dark:text-zinc-400">
@@ -66,7 +94,7 @@ function categoryIndexSelectHandler(index: number) {
             >
               {{ site.name }}
             </div>
-            <div class="text-zinc-400 dark:text-zinc-600 text-sm custom-line-clamp">
+            <div class="text-zinc-400 dark:text-zinc-600 text-sm custom-line-clamp" :title="site.description">
               {{ site.description }}
             </div>
             <div class="mt-1 flex items-center text-xs text-zinc-300 dark:text-zinc-700">
@@ -82,7 +110,7 @@ function categoryIndexSelectHandler(index: number) {
 
 <style scoped lang="scss">
 // 宽度小于 640px 时（sm:）在每个类目区上方添加 60px 的外边框
-@media not all and (min-width: 640px) {
+@media (max-width: 640px) {
   .custom-sm-scroll-to-style-fix::before {
     content: '';
     width: 100%;
