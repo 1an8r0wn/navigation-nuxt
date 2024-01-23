@@ -2,7 +2,7 @@ export const useNavigationStore = defineStore('navigation', {
   state: () => ({
     navigationList: {},
     // 点击选择的类目索引值
-    categoryClickScrollToIndex: 0,
+    categoryClickScrollToIndex: -1,
   }),
   actions: {
     /**
