@@ -26,10 +26,10 @@ watch(() => store.activeCategoryScrollToIndex, (index: number) => {
       class="flex flex-row sm:flex-col flex-nowrap" @click="getCategoryClickIndex(category.id)"
     >
       <!-- 横向菜单栏，屏幕尺寸小于 xs 时显示 -->
-      <div class="max-sm:h-12 flex items-center flex-nowrap bg-white dark:bg-[#121212]">
+      <div class="max-sm:h-12 flex items-center flex-nowrap bg-white dark:bg-transparent">
         <span
-          :class="{ 'bg-zinc-100 text-zinc-800 font-bold dark:text-zinc-300 dark:bg-zinc-900': category.id === activeIndex }"
-          class="visible sm:hidden w-max mx-4 py-2 px-4 text-zinc-400 hover:text-zinc-800 hover:font-bold dark:text-zinc-600 dark:hover:text-zinc-300 bg-transparent hover:bg-zinc-100 dark:hover:bg-zinc-900 rounded-full cursor-pointer"
+          :class="{ 'bg-zinc-100 text-zinc-800 font-bold dark:text-zinc-300 dark:bg-zinc-900/30 backdrop-blur-md': category.id === activeIndex }"
+          class="visible sm:hidden w-max mx-4 py-2 px-4 text-zinc-400 hover:text-zinc-800 hover:font-bold dark:text-zinc-600 dark:hover:text-zinc-300 backdrop-blur-sm bg-transparent hover:bg-zinc-100 dark:hover:bg-zinc-900 rounded-full cursor-pointer"
         >
           {{ category.name }}
         </span>
