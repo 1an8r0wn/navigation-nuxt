@@ -17,6 +17,9 @@ export default defineEventHandler(async () => {
           is_visibility: true,
           is_delete: false,
         },
+        orderBy: {
+          is_sensitive: 'asc',
+        },
       },
     },
   })

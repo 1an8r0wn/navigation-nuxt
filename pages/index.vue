@@ -83,9 +83,13 @@ onBeforeUnmount(() => {
           {{ category.description }}
         </div>
       </div>
-      <div class="w-full grid gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6">
+      <div
+        :class="category.is_sensitive === true ? 'blur-3xl hover:blur-none' : ''"
+        class="w-full grid gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6"
+      >
         <template v-for="site in category.site" :key="site.id">
           <div
+            :class="site.is_sensitive === true ? 'blur-3xl hover:blur-none' : ''"
             class="group flex flex-col h-fit p-2.5 hover:bg-zinc-50 dark:hover:bg-zinc-900 border-2 border-transparent hover:border-2 hover:border-zinc-100 dark:hover:border-zinc-800 rounded-md hover:cursor-pointer"
             @click="jumpUrlHandler(site)"
           >
