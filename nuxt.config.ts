@@ -14,7 +14,7 @@ export default defineNuxtConfig({
   ],
   dayjs: {
     locales: ['zh-cn', 'en'],
-    plugins: ['relativeTime', 'utc', 'timezone'],
+    plugins: ['isBetween', 'relativeTime', 'utc', 'timezone'],
     defaultLocale: 'zh-cn',
   },
   runtimeConfig: {

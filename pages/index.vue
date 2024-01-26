@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import dayjs from 'dayjs'
 import { useNavigationStore } from '~/stores'
 
 interface Site {
@@ -93,10 +94,18 @@ onBeforeUnmount(() => {
             class="group flex flex-col h-fit p-2.5 hover:bg-zinc-50 dark:hover:bg-zinc-900 border-2 border-transparent hover:border-2 hover:border-zinc-100 dark:hover:border-zinc-800 rounded-md hover:cursor-pointer"
             @click="jumpUrlHandler(site)"
           >
-            <div
-              class="mb-1 text-zinc-400 group-hover:underline group-hover:decoration-wavy group-hover:underline-offset-1 group-hover:text-zinc-800 dark:text-zinc-600 dark:group-hover:text-zinc-300 font-bold custom-line-clamp"
-            >
-              {{ site.name }}
+            <div class="flex flex-row flex-wrap items-baseline justify-between">
+              <div
+                class="mb-1 text-zinc-400 group-hover:underline group-hover:decoration-wavy group-hover:underline-offset-1 group-hover:text-zinc-800 dark:text-zinc-600 dark:group-hover:text-zinc-300 font-bold custom-line-clamp"
+              >
+                {{ site.name }}
+              </div>
+              <!-- 通过 dayjs 引入当前网站添加至数据库的时间与从当前时间至一周前的时间进行比对，若创建时间在一周内则显示徽章 -->
+              <div v-if="dayjs(site.created_at).isBetween(dayjs().subtract(7, 'day'), dayjs(), 'day', '(]')">
+                <UBadge size="xs" color="gray" variant="solid">
+                  New
+                </UBadge>
+              </div>
             </div>
             <div class="text-zinc-400 dark:text-zinc-600 text-sm custom-line-clamp" :title="site.description">
               {{ site.description }}
