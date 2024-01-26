@@ -8,6 +8,7 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/ui',
     '@nuxt/image',
+    'dayjs-nuxt',
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
   ],
