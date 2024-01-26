@@ -12,6 +12,11 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
   ],
+  dayjs: {
+    locales: ['zh-cn', 'en'],
+    plugins: ['relativeTime', 'utc', 'timezone'],
+    defaultLocale: 'zh-cn',
+  },
   runtimeConfig: {
     public: {
       socketPort: 3001,
