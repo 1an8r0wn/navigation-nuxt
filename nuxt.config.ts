@@ -6,12 +6,18 @@ export default defineNuxtConfig({
     icons: ['mdi'],
   },
   modules: [
+    'nuxt-security',
     '@nuxt/ui',
     '@nuxt/image',
     'dayjs-nuxt',
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
   ],
+  security: {
+    headers: {
+      crossOriginEmbedderPolicy: process.env.NODE_ENV === 'development' ? 'unsafe-none' : 'require-corp',
+    },
+  },
   dayjs: {
     locales: ['zh-cn', 'en'],
     plugins: ['isBetween', 'relativeTime', 'utc', 'timezone'],

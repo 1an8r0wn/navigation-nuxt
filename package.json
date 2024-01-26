@@ -1,6 +1,6 @@
 {
   "name": "navigation-nuxt",
-  "version": "0.0.21",
+  "version": "0.0.22",
   "description": "An open source personal navigation practice platform built on the Nuxt 3 framework",
   "private": true,
   "type": "module",
@@ -17,6 +17,7 @@
     "dayjs-nuxt": "^2.1.9",
     "eslint": "^8.56.0",
     "nuxt": "^3.9.1",
+    "nuxt-security": "^1.0.1",
     "prisma": "^5.8.0",
     "vue": "^3.4.10",
     "vue-router": "^4.2.5"
