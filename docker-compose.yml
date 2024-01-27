@@ -7,7 +7,7 @@ services:
     restart: always
     network_mode: individual
     ports:
-      - "3020:3000"
+      - "3010:3000"
     build:
       context: .
       dockerfile: Dockerfile

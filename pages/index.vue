@@ -48,14 +48,13 @@ function handleScroll() {
   /**
    * TODO 【目前存在问题】获取页面 scroll 与类目高度相减的绝对值的下标和哪个菜单栏 index 最近就高亮哪个菜单项
    */
-  const scroll = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop
-  const arr = Array(store.navigationList.length)
-    .fill(1)
-    .map((item, index) => {
-      const contentItem = document.getElementById(`category_${index + 1}`)
-      return Math.abs(scroll - contentItem?.offsetTop + 235)
-    })
-  activeIndex.value = arr.indexOf(Math.min(...arr))
+  const scroll = document.getElementById('__nuxt')!.scrollTop || document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop
+  const arr = []
+  for (let index = 1; index <= store.navigationList.length; index++) {
+    const contentItem = document.getElementById(`category_${index}`)
+    arr.push(Math.abs(scroll - contentItem!.offsetTop))
+  }
+  activeIndex.value = arr.indexOf(Math.min(...arr)) + 1
   store.updateActiveCategoryIndexHandler(Number(activeIndex.value))
 }
 

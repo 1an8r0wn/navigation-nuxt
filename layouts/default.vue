@@ -32,7 +32,7 @@ onBeforeUnmount(() => {
   <template v-else>
     <BaseHeader />
     <div class="h-full flex flex-col sm:flex-row sm:my-9 px-4 sm:px-9 select-none">
-      <Category class="w-52 min-w-52" />
+      <Category />
       <slot />
     </div>
     <BaseFooter />

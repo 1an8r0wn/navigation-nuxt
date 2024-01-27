@@ -56,10 +56,10 @@ function getLogoImageUrl(name: string) {
 }
 
 /**
- * 使用侦听器对 colorMode 内的 preference 进行侦听，若 preference 值为 dark 则显示浅色 logo
+ * 使用侦听器判断当前页面 colorMode 缓存值是否为 dark 或通过 preference 值为 system 且设备是否为深色模式进行判断以此切换 logo 图片
  */
-watch(() => colorMode.preference, (preference) => {
-  if (preference === 'dark')
+watch(() => colorMode.preference, () => {
+  if (colorMode.preference === 'dark' || (colorMode.preference === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches))
     logoImage.value = 'booop_navigation_logo_w500_h150_white'
   else
     logoImage.value = 'booop_navigation_logo_w500_h150_black'
@@ -80,9 +80,9 @@ onMounted(() => {
   }
 
   /**
-   * 初始化时判断当前页面 colorMode 缓存值是否为 dark 并根据对应模式切换 logo 图片
+   * 初始化时判断当前页面 colorMode 缓存值是否为 dark 或通过 preference 值为 system 且设备是否为深色模式进行判断以此切换 logo 图片
    */
-  if (colorMode.preference === 'dark')
+  if (colorMode.preference === 'dark' || (colorMode.preference === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches))
     logoImage.value = 'booop_navigation_logo_w500_h150_white'
   else
     logoImage.value = 'booop_navigation_logo_w500_h150_black'
