@@ -15,6 +15,7 @@ export default defineNuxtConfig({
   ],
   security: {
     headers: {
+      // eslint-disable-next-line node/prefer-global/process
       crossOriginEmbedderPolicy: process.env.NODE_ENV === 'development' ? 'unsafe-none' : 'require-corp',
     },
   },
@@ -25,6 +26,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
+      baiduAPI: '',
       socketPort: 3001,
     },
   },
@@ -34,6 +36,9 @@ export default defineNuxtConfig({
         lang: 'zh-cn',
       },
       charset: 'utf-8',
+      // 引入百度统计代码，具体 API 值请前往 .env 的 NUXT_PUBLIC_BAIDU_API 进行编辑
+      // eslint-disable-next-line node/prefer-global/process
+      script: [{ src: `https://hm.baidu.com/hm.js?${process.env.BAIDU_TONGJI_API}` }],
     },
   },
 })
