@@ -71,14 +71,14 @@ onBeforeUnmount(() => {
 
 <template>
   <main class="w-full sm:pl-4">
-    <div
+    <section
       v-for="category in store.navigationList" :id="`category_${category.id}`" :key="category.id"
       ref="content" class="mb-4 tracking-wide"
     >
       <div class="flex flex-col mb-2 text-center sm:text-justify custom-sm-scroll-to-style-fix">
-        <div class="text-xl font-bold text-zinc-900 dark:text-zinc-400">
+        <header class="text-xl font-bold text-zinc-900 dark:text-zinc-400">
           {{ category.name }}
-        </div>
+        </header>
         <div class="text-base text-zinc-600">
           {{ category.description }}
         </div>
@@ -88,11 +88,11 @@ onBeforeUnmount(() => {
         class="w-full grid gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6"
       >
         <template v-for="site in category.site" :key="site.id">
-          <div
+          <section
             class="group flex flex-col h-fit p-2.5 hover:bg-zinc-50 dark:hover:bg-zinc-900 border-2 border-transparent hover:border-2 hover:border-zinc-100 dark:hover:border-zinc-800 rounded-md hover:cursor-pointer"
             @click="jumpUrlHandler(site)"
           >
-            <div class="flex flex-row flex-wrap items-baseline justify-between">
+            <header class="flex flex-row flex-wrap items-baseline justify-between">
               <div
                 :class="site.is_sensitive === true ? 'blur-sm group-hover:blur-none' : ''"
                 class="mb-1 text-zinc-400 group-hover:underline group-hover:decoration-wavy group-hover:underline-offset-1 group-hover:text-zinc-800 dark:text-zinc-600 dark:group-hover:text-zinc-300 font-bold custom-line-clamp"
@@ -105,7 +105,7 @@ onBeforeUnmount(() => {
                   New
                 </UBadge>
               </div>
-            </div>
+            </header>
             <div
               :class="site.is_sensitive === true ? 'blur-sm group-hover:blur-none' : ''"
               class="text-zinc-400 dark:text-zinc-600 text-sm custom-line-clamp" :title="site.description"
@@ -116,10 +116,10 @@ onBeforeUnmount(() => {
               <UIcon class="mr-1" name="i-heroicons-eye" />
               <span>{{ site.visits_count }} 次访问</span>
             </div>
-          </div>
+          </section>
         </template>
       </div>
-    </div>
+    </section>
   </main>
 </template>
 
