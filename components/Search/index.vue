@@ -1,23 +1,29 @@
 <script setup lang="ts">
+import { debounce } from 'lodash'
 import { useNavigationStore } from '~/stores'
 
 const store = useNavigationStore()
 const inputValue = ref('')
 
-watch(() => inputValue.value, async () => {
-  if (inputValue.value !== '') {
+async function fetchData(keyword: string) {
+  if (keyword !== '') {
     // inputValue 值不为空则将 keyword 通过 get 方法传至 searchKeyword 接口
-    const { data: categoryList } = await useFetch('/api/category/searchKeyword', {
+    const categoryList = await $fetch('/api/category/searchKeyword', {
       method: 'get',
-      query: { keyword: inputValue.value },
+      query: { keyword },
     })
     store.updateNavigationList(categoryList)
   }
   else {
     // inputValue 值为空时，恢复调用 allNavigationListData 接口
-    const { data: categoryList } = await useFetch('/api/category/allNavigationListData')
+    const categoryList = await $fetch('/api/category/allNavigationListData')
     store.updateNavigationList(categoryList)
   }
+}
+
+const debouncedFetch = debounce((keyword: string) => fetchData(keyword), 300)
+watch(() => inputValue.value, (keyword) => {
+  debouncedFetch(keyword)
 })
 </script>
 

@@ -6,11 +6,15 @@ import BaseFooter from '~/components/Footer/BaseFooter.vue'
 const lockScreenFlag = ref(false)
 
 /**
- * 判断按下的按键是否为 l 或 L ，如果是则切换锁屏显示标志值
+ * 判断按下的按键是否为 CTRL 或 META 和 / ，如果是则切换锁屏显示标志值
  * @param event
  */
-function handleKeyDown(event: { key: string }) {
-  if (event.key === 'l' || event.key === 'L')
+function handleKeyDown(event: {
+  metaKey: boolean
+  ctrlKey: boolean
+  key: string
+}) {
+  if ((event.ctrlKey || event.metaKey) && event.key === '/')
     lockScreenFlag.value = !lockScreenFlag.value
 }
 
