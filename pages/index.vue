@@ -70,7 +70,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <main class="w-full sm:pl-4">
+  <main>
     <section
       v-for="category in store.navigationList" :id="`category_${category.id}`" :key="category.id"
       ref="content" class="mb-4 tracking-wide"

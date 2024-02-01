@@ -33,7 +33,10 @@ onBeforeUnmount(() => {
     <BaseHeader />
     <div class="h-full flex flex-col sm:flex-row sm:my-9 px-4 sm:px-9 select-none">
       <Category />
-      <slot />
+      <div class="flex flex-col w-full sm:pl-4">
+        <Search />
+        <slot />
+      </div>
     </div>
     <BaseFooter />
   </template>
