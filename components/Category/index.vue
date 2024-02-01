@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useNavigationStore } from '~/stores'
 
-const { data: categoryList } = await useFetch('/api/category')
+const { data: categoryList } = await useFetch('/api/category/allNavigationListData')
 const store = useNavigationStore()
 store.updateNavigationList(categoryList)
 
