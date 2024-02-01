@@ -12,3 +12,6 @@ node_modules
 # System files
 *.log
 
+# Git
+.git
+.gitignore
