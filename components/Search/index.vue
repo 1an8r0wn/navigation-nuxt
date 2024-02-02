@@ -7,7 +7,7 @@ const inputValue = ref('')
 watch(() => inputValue.value, async () => {
   if (inputValue.value !== '') {
     // inputValue 值不为空则将 keyword 通过 get 方法传至 searchKeyword 接口
-    const { data: categoryList } = await useFetch('/api/category/searchKeyword', {
+    const categoryList = await $fetch('/api/category/searchKeyword', {
       method: 'get',
       query: { keyword: inputValue.value },
     })
@@ -15,7 +15,7 @@ watch(() => inputValue.value, async () => {
   }
   else {
     // inputValue 值为空时，恢复调用 allNavigationListData 接口
-    const { data: categoryList } = await useFetch('/api/category/allNavigationListData')
+    const categoryList = await $fetch('/api/category/allNavigationListData')
     store.updateNavigationList(categoryList)
   }
 })

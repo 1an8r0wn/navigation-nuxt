@@ -1,6 +1,6 @@
 {
   "name": "navigation-nuxt",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "An open source personal navigation practice platform built on the Nuxt 3 framework",
   "private": true,
   "type": "module",
