@@ -36,18 +36,23 @@ onBeforeUnmount(() => {
   <template v-else>
     <div class="common-layout dark:bg-zinc-950">
       <el-container>
+        <!-- 顶栏容器 -->
         <el-header height="3rem">
           <BaseHeader />
         </el-header>
+        <!-- 外层容器 -->
         <el-container class="h-full flex flex-col sm:flex-row sm:my-6 px-4 sm:px-6 select-none">
+          <!-- 侧边栏容器 -->
           <el-aside class="hidden-xs-only" width="12rem">
             <Category />
           </el-aside>
+          <!-- 主要区域容器 -->
           <el-main class="flex flex-col w-full sm:ml-6">
             <Search />
             <slot />
           </el-main>
         </el-container>
+        <!-- 底栏容器 -->
         <el-footer>
           <BaseFooter />
         </el-footer>

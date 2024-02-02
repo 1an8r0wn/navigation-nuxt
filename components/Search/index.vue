@@ -27,7 +27,7 @@ watch(() => inputValue.value, async () => {
     <el-input
       v-model="inputValue"
       size="large"
-      placeholder="Please Input"
+      placeholder="请输入要搜索的关键字"
       :prefix-icon="Search"
     />
   </div>

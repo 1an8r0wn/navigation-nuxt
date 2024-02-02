@@ -127,6 +127,9 @@ onBeforeUnmount(() => {
       </div>
     </section>
   </main>
+
+  <!-- BackTop 回到顶部组件 -->
+  <el-backtop :right="24" :bottom="48" />
 </template>
 
 <style scoped lang="scss">
