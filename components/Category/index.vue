@@ -21,7 +21,7 @@ watch(() => store.activeCategoryScrollToIndex, (index: number) => {
 
 <template>
   <nav
-    class="h-max w-full pr-0 sm:pr-4 mb-4 sm:mb-0 flex flex-row sm:flex-col overflow-x-auto"
+    class="h-dvh sticky top-0 w-full pr-0 sm:pr-4 mb-4 sm:mb-0 flex flex-row sm:flex-col overflow-x-auto"
   >
     <div
       v-for="category in store.navigationList" :id="`category_nav_${category.id}`" :key="category.id"

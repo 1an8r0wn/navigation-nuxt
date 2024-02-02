@@ -61,6 +61,10 @@ onBeforeUnmount(() => {
   padding: 0;
 }
 
+:deep(.el-aside) {
+  overflow: visible;
+}
+
 :deep(.el-main) {
   padding: 0;
 }
