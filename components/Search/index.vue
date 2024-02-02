@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Search } from '@element-plus/icons-vue'
 import { useNavigationStore } from '~/stores'
 
 const store = useNavigationStore()
@@ -22,15 +23,12 @@ watch(() => inputValue.value, async () => {
 </script>
 
 <template>
-  <div class="mb-4">
-    <UInput
-      id="searchInput"
+  <div class="mb-6">
+    <el-input
       v-model="inputValue"
-      icon="i-heroicons-magnifying-glass-20-solid"
-      size="lg"
-      color="white"
-      :trailing="false"
-      placeholder="输入你想要搜索的内容"
+      size="large"
+      placeholder="Please Input"
+      :prefix-icon="Search"
     />
   </div>
 </template>
