@@ -34,18 +34,38 @@ onBeforeUnmount(() => {
     <LockScreen />
   </template>
   <template v-else>
-    <BaseHeader />
-    <div class="h-full flex flex-col sm:flex-row sm:my-9 px-4 sm:px-9 select-none">
-      <Category />
-      <div class="flex flex-col w-full sm:pl-4">
-        <Search />
-        <slot />
-      </div>
+    <div class="common-layout dark:bg-zinc-950">
+      <el-container>
+        <el-header height="3rem">
+          <BaseHeader />
+        </el-header>
+        <el-container class="h-full flex flex-col sm:flex-row sm:my-6 px-4 sm:px-6 select-none">
+          <el-aside class="hidden-xs-only" width="12rem">
+            <Category />
+          </el-aside>
+          <el-main class="flex flex-col w-full sm:ml-6">
+            <Search />
+            <slot />
+          </el-main>
+        </el-container>
+        <el-footer>
+          <BaseFooter />
+        </el-footer>
+      </el-container>
     </div>
-    <BaseFooter />
   </template>
 </template>
 
 <style scoped lang="scss">
+:deep(.el-header) {
+  padding: 0;
+}
 
+:deep(.el-main) {
+  padding: 0;
+}
+
+:deep(.el-footer) {
+  padding: 0;
+}
 </style>

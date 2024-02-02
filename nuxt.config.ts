@@ -1,7 +1,11 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  css: ['@/assets/scss/main.scss'],
+  css: [
+    '@/assets/scss/main.scss',
+    'element-plus/theme-chalk/display.css',
+    'element-plus/theme-chalk/dark/css-vars.css',
+  ],
   ui: {
     icons: ['mdi'],
   },

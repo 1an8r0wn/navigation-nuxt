@@ -90,8 +90,8 @@ onMounted(() => {
 </script>
 
 <template>
-  <header
-    class="h-12 px-4 sm:px-9 flex items-center select-none"
+  <div
+    class="h-full px-4 sm:px-6 flex items-center justify-center select-none"
   >
     <div class="w-full flex items-center justify-between">
       <img class="h-9" :src="getLogoImageUrl(logoImage)" alt="">
@@ -106,7 +106,7 @@ onMounted(() => {
         />
       </div>
     </div>
-  </header>
+  </div>
 </template>
 
 <style scoped lang="scss">

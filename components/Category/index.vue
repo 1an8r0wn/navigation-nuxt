@@ -21,7 +21,7 @@ watch(() => store.activeCategoryScrollToIndex, (index: number) => {
 
 <template>
   <nav
-    class="w-full sm:w-52 sm:min-w-52 h-auto sm:h-dvh sticky top-0 z-50 pr-0 sm:pr-4 mb-4 sm:mb-0 flex flex-row sm:flex-col overflow-x-auto"
+    class="h-max w-full pr-0 sm:pr-4 mb-4 sm:mb-0 flex flex-row sm:flex-col overflow-x-auto"
   >
     <div
       v-for="category in store.navigationList" :id="`category_nav_${category.id}`" :key="category.id"
@@ -38,8 +38,8 @@ watch(() => store.activeCategoryScrollToIndex, (index: number) => {
       </div>
       <!-- 竖向菜单栏 - PC 端：屏幕尺寸大于 xs 时显示 -->
       <div
-        :class="{ 'bg-zinc-100 text-zinc-900 font-bold dark:text-zinc-200 dark:bg-zinc-900': category.id === activeIndex }"
-        class="hidden sm:inline p-4 pl-8 my-2 text-zinc-400 hover:text-zinc-600 hover:font-bold dark:text-zinc-600 dark:hover:text-zinc-400 bg-transparent hover:bg-zinc-100 dark:hover:bg-zinc-900 rounded-md cursor-pointer"
+        :class="[category.id === activeIndex ? 'bg-zinc-100 text-zinc-900 font-bold dark:text-zinc-200 dark:bg-zinc-900' : '']"
+        class="p-4 pl-8 my-2 text-zinc-400 hover:text-zinc-600 hover:font-bold dark:text-zinc-600 dark:hover:text-zinc-400 bg-transparent hover:bg-zinc-100 dark:hover:bg-zinc-900 rounded-md cursor-pointer"
       >
         {{ category.name }}
       </div>
