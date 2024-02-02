@@ -72,11 +72,11 @@ onBeforeUnmount(() => {
 <template>
   <main>
     <!-- 如何搜索关键词在 store.navigationList 中为空则显示该提示 -->
-    <div v-if="store.navigationList.length === 0" class="text-center mt-4">
-      <p class="text-xl text-zinc-600 dark:text-zinc-400">
+    <section v-if="store.navigationList.length === 0" class="text-center my-4">
+      <p class="text-xl text-zinc-400 dark:text-zinc-400">
         搜索内容为空
       </p>
-    </div>
+    </section>
 
     <!-- store.navigationList 不为空正常循环显示 -->
     <section
