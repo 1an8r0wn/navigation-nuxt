@@ -5,6 +5,8 @@ export const useNavigationStore = defineStore('navigation', {
     categoryClickScrollToIndex: -1,
     // 通过滚动事件侦听当前页面所处类目索引值
     activeCategoryScrollToIndex: 0,
+    // 锁屏显示标志，为 true 时显示锁屏界面
+    lockScreenFlag: false,
   }),
   actions: {
     /**

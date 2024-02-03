@@ -1,5 +1,20 @@
 <script setup lang="ts">
+import { useNavigationStore } from '~/stores'
+
 const appConfig = useAppConfig()
+
+const store = useNavigationStore()
+
+/**
+ * ==================================================
+ * 切换锁屏页面
+ * 根据 store 内的 lockScreenFlag 标记进行判断
+ * ==================================================
+ */
+
+function switchLockScreenHandler() {
+  store.lockScreenFlag = true
+}
 
 /**
  * ==================================================
@@ -96,6 +111,12 @@ onMounted(() => {
     <div class="w-full flex items-center justify-between">
       <img class="h-9" :src="getLogoImageUrl(logoImage)" alt="">
       <div>
+        <UTooltip text="Lock Screen" :shortcuts="['Ctrl', '/']">
+          <UButton
+            icon="i-heroicons-clock" size="sm" color="black" square variant="link"
+            @click="switchLockScreenHandler()"
+          />
+        </UTooltip>
         <UButton
           :icon="colorModeIcon.icon" size="sm" color="black" square variant="link"
           @click="switchColorModeHandler()"

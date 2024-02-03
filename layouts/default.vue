@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import BaseHeader from '~/components/Header/BaseHeader.vue'
 import BaseFooter from '~/components/Footer/BaseFooter.vue'
+import { useNavigationStore } from '~/stores'
 
-// 锁屏显示标志，为 true 时显示锁屏界面
-const lockScreenFlag = ref(false)
+const store = useNavigationStore()
 
 /**
  * 判断按下的按键是否为 CTRL 或 META 和 / ，如果是则切换锁屏显示标志值
@@ -15,7 +15,7 @@ function handleKeyDown(event: {
   key: string
 }) {
   if ((event.ctrlKey || event.metaKey) && event.key === '/')
-    lockScreenFlag.value = !lockScreenFlag.value
+    store.lockScreenFlag = !store.lockScreenFlag
 }
 
 onMounted(() => {
@@ -30,7 +30,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <template v-if="lockScreenFlag">
+  <template v-if="store.lockScreenFlag">
     <LockScreen />
   </template>
   <template v-else>
