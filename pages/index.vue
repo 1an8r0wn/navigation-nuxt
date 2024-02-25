@@ -12,11 +12,20 @@ const store = useNavigationStore()
 /**
  * 跳转选择的网站并通过 api 对选择的网站访问数进行累加处理
  * @param site
+ * @param event
  */
-async function jumpUrlHandler(site: Site) {
-  useFetch('/api/site', { method: 'post', body: site })
-  window.open(site.url, '_self') // 在当前窗口打开网站
-  site.visits_count += 1
+async function jumpUrlHandler(site: Site, event: any) {
+  // 判断鼠标按键是否为左键
+  if (event.button === 0) {
+    useFetch('/api/site', { method: 'post', body: site })
+    window.open(site.url, '_self') // 在当前窗口打开网站
+    site.visits_count += 1
+  }// 判断鼠标按键是否为中键
+  else if (event.button === 1) {
+    useFetch('/api/site', { method: 'post', body: site })
+    window.open(site.url, '_blank') // 在新标签页打开网站
+    site.visits_count += 1
+  }
 }
 
 /**
@@ -96,7 +105,7 @@ onBeforeUnmount(() => {
         <template v-for="site in category.site" :key="site.id">
           <section
             class="group flex flex-col h-fit p-2.5 hover:bg-zinc-50 dark:hover:bg-zinc-900 border-2 border-transparent hover:border-2 hover:border-zinc-100 dark:hover:border-zinc-800 rounded-md hover:cursor-pointer"
-            @click="jumpUrlHandler(site)"
+            @mousedown="jumpUrlHandler(site, $event)"
           >
             <header class="flex flex-row flex-wrap items-baseline justify-between">
               <div
