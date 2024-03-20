@@ -1,6 +1,6 @@
 {
   "name": "navigation-nuxt",
-  "version": "0.1.16",
+  "version": "0.1.17",
   "description": "An open source personal navigation practice platform built on the Nuxt 3 framework",
   "private": true,
   "type": "module",
@@ -12,25 +12,25 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.6.4",
+    "@antfu/eslint-config": "^2.8.3",
     "@pinia-plugin-persistedstate/nuxt": "^1.2.0",
     "dayjs-nuxt": "^2.1.9",
     "eslint": "^8.57.0",
-    "nuxt": "^3.10.3",
-    "nuxt-security": "^1.2.0",
-    "prisma": "^5.10.2",
-    "vue": "^3.4.19",
+    "nuxt": "^3.11.1",
+    "nuxt-security": "^1.2.2",
+    "prisma": "^5.11.0",
+    "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   },
   "dependencies": {
     "@element-plus/nuxt": "^1.0.7",
     "@iconify-json/mdi": "^1.1.64",
-    "@nuxt/ui": "^2.14.1",
+    "@nuxt/ui": "^2.14.2",
     "@pinia/nuxt": "^0.5.1",
     "@prisma/client": "5.8.0",
-    "element-plus": "^2.5.6",
+    "element-plus": "^2.6.1",
     "pinia": "^2.1.7",
-    "sass": "^1.71.1",
-    "socket.io": "^4.7.4"
+    "sass": "^1.72.0",
+    "socket.io": "^4.7.5"
   }
 }
