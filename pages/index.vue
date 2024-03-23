@@ -18,12 +18,10 @@ async function jumpUrlHandler(site: Site, event: any) {
   // 判断鼠标按键是否为左键
   if (event.button === 0) {
     useFetch('/api/site', { method: 'post', body: site })
-    window.open(site.url, '_self') // 在当前窗口打开网站
     site.visits_count += 1
   }// 判断鼠标按键是否为中键
   else if (event.button === 1) {
     useFetch('/api/site', { method: 'post', body: site })
-    window.open(site.url, '_blank') // 在新标签页打开网站
     site.visits_count += 1
   }
 }
@@ -107,30 +105,41 @@ onBeforeUnmount(() => {
             class="group flex flex-col h-fit p-2.5 hover:bg-zinc-50 dark:hover:bg-zinc-900 border-2 border-transparent hover:border-2 hover:border-zinc-100 dark:hover:border-zinc-800 rounded-md hover:cursor-pointer"
             @mousedown="jumpUrlHandler(site, $event)"
           >
-            <header class="flex flex-row flex-wrap items-baseline justify-between">
+            <ULink :to="site.url">
+              <header class="flex flex-row flex-wrap items-baseline justify-between">
+                <div
+                  :class="site.is_sensitive === true ? 'blur-sm group-hover:blur-none' : ''"
+                  class="mb-1 text-zinc-400 group-hover:underline group-hover:decoration-wavy group-hover:underline-offset-1 group-hover:text-zinc-800 dark:text-zinc-600 dark:group-hover:text-zinc-300 font-bold custom-line-clamp"
+                >
+                  {{ site.name }}
+                </div>
+                <!-- 通过 dayjs 引入当前网站添加至数据库的时间与从当前时间至一周前的时间进行比对，若创建时间在一周内则显示徽章 -->
+                <div v-if="dayjs(site.created_at).isBetween(dayjs().subtract(7, 'day'), dayjs(), 'day', '(]')">
+                  <UBadge size="xs" color="gray" variant="solid">
+                    New
+                  </UBadge>
+                </div>
+              </header>
               <div
                 :class="site.is_sensitive === true ? 'blur-sm group-hover:blur-none' : ''"
-                class="mb-1 text-zinc-400 group-hover:underline group-hover:decoration-wavy group-hover:underline-offset-1 group-hover:text-zinc-800 dark:text-zinc-600 dark:group-hover:text-zinc-300 font-bold custom-line-clamp"
+                class="text-zinc-400 dark:text-zinc-600 text-sm custom-line-clamp" :title="site.description"
               >
-                {{ site.name }}
+                {{ site.description }}
               </div>
-              <!-- 通过 dayjs 引入当前网站添加至数据库的时间与从当前时间至一周前的时间进行比对，若创建时间在一周内则显示徽章 -->
-              <div v-if="dayjs(site.created_at).isBetween(dayjs().subtract(7, 'day'), dayjs(), 'day', '(]')">
-                <UBadge size="xs" color="gray" variant="solid">
-                  New
-                </UBadge>
+              <div class="mt-1 flex items-center justify-between text-xs text-zinc-300 dark:text-zinc-700">
+                <!-- 访问数 -->
+                <div>
+                  <UIcon class="mr-1" name="i-heroicons-eye" />
+                  <span>{{ site.visits_count }} 次访问</span>
+                </div>
+                <!-- 网址标签 -->
+                <div class="flex flex-row">
+                  <template v-for="item in site.site_type" :key="item">
+                    <UKbd class="ml-0.5" size="xs" :value="item" />
+                  </template>
+                </div>
               </div>
-            </header>
-            <div
-              :class="site.is_sensitive === true ? 'blur-sm group-hover:blur-none' : ''"
-              class="text-zinc-400 dark:text-zinc-600 text-sm custom-line-clamp" :title="site.description"
-            >
-              {{ site.description }}
-            </div>
-            <div class="mt-1 flex items-center text-xs text-zinc-300 dark:text-zinc-700">
-              <UIcon class="mr-1" name="i-heroicons-eye" />
-              <span>{{ site.visits_count }} 次访问</span>
-            </div>
+            </ULink>
           </section>
         </template>
       </div>
