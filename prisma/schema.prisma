@@ -9,16 +9,16 @@ datasource db {
 }
 
 model category {
-  id                    Int      @id @default(autoincrement())
-  name                  String   @db.VarChar(255)
-  description           String?  @db.VarChar(255)
-  sort                  Int      @unique
-  is_secondary_category Boolean  @default(false)
-  is_sensitive          Boolean  @default(false)
-  created_at            DateTime @default(now())
-  is_delete             Boolean  @default(false)
-  is_visibility         Boolean  @default(true)
-  updated_at            DateTime
+  id                    Int       @id @default(autoincrement())
+  name                  String    @db.VarChar(255)
+  description           String?   @db.VarChar(255)
+  sort                  Int       @unique
+  is_secondary_category Boolean   @default(false)
+  is_sensitive          Boolean   @default(false)
+  created_at            DateTime  @default(now())
+  is_delete             Boolean   @default(false)
+  is_visibility         Boolean   @default(true)
+  updated_at            DateTime?
   site                  site[]
 }
 
@@ -28,19 +28,20 @@ model option {
 }
 
 model site {
-  id            Int      @id @default(autoincrement())
-  name          String   @db.VarChar(80)
-  description   String?  @db.VarChar(255)
-  url           String   @db.Text
-  logo          String?  @db.Text
-  visits_count  Int      @default(0)
-  is_sensitive  Boolean  @default(false)
+  id            Int       @id @default(autoincrement())
+  name          String    @db.VarChar(80)
+  description   String?   @db.VarChar(255)
+  url           String    @db.Text
+  logo          String?   @db.Text
+  site_type     Json?
+  visits_count  Int       @default(0)
+  is_sensitive  Boolean   @default(false)
   category_id   Int
-  created_at    DateTime @default(now())
-  is_delete     Boolean  @default(false)
-  is_visibility Boolean  @default(true)
-  updated_at    DateTime
-  category      category @relation(fields: [category_id], references: [id])
+  created_at    DateTime  @default(now())
+  is_delete     Boolean   @default(false)
+  is_visibility Boolean   @default(true)
+  updated_at    DateTime?
+  category      category  @relation(fields: [category_id], references: [id])
 
   @@index([category_id], map: "site_category_id_fkey")
 }
