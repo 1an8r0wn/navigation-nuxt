@@ -101,11 +101,12 @@ onBeforeUnmount(() => {
         class="w-full grid gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6"
       >
         <template v-for="site in category.site" :key="site.id">
-          <section
-            class="group flex flex-col h-fit p-2.5 hover:bg-zinc-50 dark:hover:bg-zinc-900 border-2 border-transparent hover:border-2 hover:border-zinc-100 dark:hover:border-zinc-800 rounded-md hover:cursor-pointer"
-            @mousedown="jumpUrlHandler(site, $event)"
-          >
-            <ULink :to="site.url">
+          <section>
+            <ULink
+              :to="site.url"
+              class="group flex flex-col h-fit p-2.5 hover:bg-zinc-50 dark:hover:bg-zinc-900 border-2 border-transparent hover:border-2 hover:border-zinc-100 dark:hover:border-zinc-800 rounded-md hover:cursor-pointer"
+              @mousedown="jumpUrlHandler(site, $event)"
+            >
               <header class="flex flex-row flex-wrap items-baseline justify-between">
                 <div
                   :class="site.is_sensitive === true ? 'blur-sm group-hover:blur-none' : ''"
@@ -113,11 +114,19 @@ onBeforeUnmount(() => {
                 >
                   {{ site.name }}
                 </div>
-                <!-- 通过 dayjs 引入当前网站添加至数据库的时间与从当前时间至一周前的时间进行比对，若创建时间在一周内则显示徽章 -->
-                <div v-if="dayjs(site.created_at).isBetween(dayjs().subtract(7, 'day'), dayjs(), 'day', '(]')">
-                  <UBadge size="xs" color="gray" variant="solid">
-                    New
-                  </UBadge>
+                <div class="flex flex-row items-center">
+                  <!-- 网址标签 -->
+                  <template v-for="item in site.site_type" :key="item">
+                    <UBadge class="ml-0.5" :size="item.size" :variant="item.variant" :color="item.color">
+                      {{ item.title }}
+                    </UBadge>
+                  </template>
+                  <!-- 通过 dayjs 引入当前网站添加至数据库的时间与从当前时间至一周前的时间进行比对，若创建时间在一周内则显示徽章 -->
+                  <template v-if="dayjs(site.created_at).isBetween(dayjs().subtract(7, 'day'), dayjs(), 'day', '(]')">
+                    <UBadge size="xs" color="gray" variant="solid">
+                      New
+                    </UBadge>
+                  </template>
                 </div>
               </header>
               <div
@@ -131,12 +140,6 @@ onBeforeUnmount(() => {
                 <div>
                   <UIcon class="mr-1" name="i-heroicons-eye" />
                   <span>{{ site.visits_count }} 次访问</span>
-                </div>
-                <!-- 网址标签 -->
-                <div class="flex flex-row">
-                  <template v-for="item in site.site_type" :key="item">
-                    <UKbd class="ml-0.5" size="xs" :value="item" />
-                  </template>
                 </div>
               </div>
             </ULink>
