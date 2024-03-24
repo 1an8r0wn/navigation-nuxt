@@ -117,9 +117,7 @@ onBeforeUnmount(() => {
                 <div class="flex flex-row items-center">
                   <!-- 网址标签 -->
                   <template v-for="item in site.site_type" :key="item">
-                    <UBadge class="ml-0.5" :size="item.size" :variant="item.variant" :color="item.color">
-                      {{ item.title }}
-                    </UBadge>
+                    {{ item.title }}
                   </template>
                   <!-- 通过 dayjs 引入当前网站添加至数据库的时间与从当前时间至一周前的时间进行比对，若创建时间在一周内则显示徽章 -->
                   <template v-if="dayjs(site.created_at).isBetween(dayjs().subtract(7, 'day'), dayjs(), 'day', '(]')">
